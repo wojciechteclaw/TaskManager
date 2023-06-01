@@ -28,6 +28,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../auth/get-user.decorator';
 import { User } from '../auth/user.entity';
 import { TaskInterceptor } from './task.interceptor';
+import { Logger } from '@nestjs/common';
 
 @ApiTags('Tasks')
 @Controller('tasks')
@@ -35,6 +36,7 @@ import { TaskInterceptor } from './task.interceptor';
 @UseInterceptors(TaskInterceptor)
 @UseGuards(AuthGuard())
 export class TasksController {
+  private logger = new Logger('TasksController', { timestamp: true });
   constructor(private tasksService: TasksService) {}
   @Get('')
   @ApiOkResponse({ description: 'Tasks found' })
@@ -48,6 +50,12 @@ export class TasksController {
     @Query() filter: TasksFilterDto,
     @GetUser() user: User,
   ): Promise<Task[]> {
+    this.logger.verbose(
+      'User ' +
+        user.username +
+        ' retrieving all tasks. Filter: ' +
+        JSON.stringify(filter),
+    );
     return this.tasksService.getTasks(filter, user);
   }
 
