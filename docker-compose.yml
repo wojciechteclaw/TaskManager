@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  task-manager-db:
+    image: postgres:12.3-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - nestjs-manager:/var/lib/postgresql/data
+volumes:
+  nestjs-manager:
