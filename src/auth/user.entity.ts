@@ -5,7 +5,6 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { IsNotEmpty, IsString, IsVariableWidth } from 'class-validator';
 import { Task } from '../tasks/task.entity';
 
 @Entity()

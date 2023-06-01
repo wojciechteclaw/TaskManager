@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Task } from './task.entity';
-import { DeleteResult, Equal, Repository } from 'typeorm';
+import { Equal } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskStatus } from './task-status.enum';
 import { TasksFilterDto } from './dto/tasks-filter.dto';
