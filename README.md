@@ -15,13 +15,14 @@
 
 To run Postgres DB one can use the following command to run it in a docker container:
 
-`docker-compose up -d`
+```bash
+docker-compose up -d
+```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+npm run start:dev
 ```
 
 ## Endpoints
